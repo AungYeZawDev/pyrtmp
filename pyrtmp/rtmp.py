@@ -81,9 +81,9 @@ async def simple_controller(reader, writer):
 async def serve_rtmp(use_protocol=True):
     loop = asyncio.get_running_loop()
     if use_protocol is True:
-        server = await loop.create_server(lambda: RTMPProtocol(controller=simple_controller, loop=loop), '0.0.0.0', 1935)
+        server = await loop.create_server(lambda: RTMPProtocol(controller=simple_controller, loop=loop), '127.0. 0.1', 1935)
     else:
-        server = await asyncio.start_server(simple_controller, '0.0.0.0', 1935)
+        server = await asyncio.start_server(simple_controller, '127.0. 0.1', 1935)
     addr = server.sockets[0].getsockname()
     logger.info(f'Serving on {addr}')
     async with server:
